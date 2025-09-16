@@ -34,5 +34,6 @@ void init() {
         postDraw();
 
         updateWindow();
+        postWindowUpdate();
     }
 }

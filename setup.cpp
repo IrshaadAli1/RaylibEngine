@@ -1,9 +1,10 @@
 //
 // Created by Irshaad on 2025-09-16.
 //
+#pragma once
 #include "Globals.h"
 
-void setupRaylibs() {
+inline void setupRaylibs() {
     InitWindow(0, 0, "");
     InitAudioDevice();
 
@@ -11,7 +12,7 @@ void setupRaylibs() {
     SetExitKey(KEY_ESCAPE);
 }
 
-void setupVariables() {
+inline void setupVariables() {
     int monitor = GetCurrentMonitor();
     Window::MonitorWidth = (float) GetMonitorWidth(monitor);
     Window::MonitorHeight = (float) GetMonitorHeight(monitor);
@@ -26,7 +27,7 @@ void setupVariables() {
     Window::FPS = 60;
 }
 
-void updateWindow() {
+inline void updateWindow() {
     if (Window::X.isChanged() || Window::Y.isChanged()) {
         SetWindowPosition((int) Window::X, (int) Window::Y);
     }

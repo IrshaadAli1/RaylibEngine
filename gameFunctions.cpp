@@ -1,28 +1,29 @@
 //
 // Created by Irshaad on 2025-09-16.
 //
+#pragma once
 #include <functional>
 using emptyFunc = std::function<void()>;
 
-emptyFunc preInit;
-emptyFunc postInit;
+inline emptyFunc preInit;
+inline emptyFunc postInit;
 
-emptyFunc preMainLoop;
-emptyFunc events;
-emptyFunc update;
+inline emptyFunc preMainLoop;
+inline emptyFunc events;
+inline emptyFunc update;
 
-emptyFunc preDraw;
+inline emptyFunc preDraw;
 
-emptyFunc preBGFill;
-emptyFunc postBGFill;
+inline emptyFunc preBGFill;
+inline emptyFunc postBGFill;
 
-emptyFunc preDraw3D;
-emptyFunc draw3D;
-emptyFunc postDraw3D;
+inline emptyFunc preDraw3D;
+inline emptyFunc draw3D;
+inline emptyFunc postDraw3D;
 
-emptyFunc preDraw2D;
-emptyFunc draw2D;
-emptyFunc postDraw2D;
+inline emptyFunc preDraw2D;
+inline emptyFunc draw2D;
+inline emptyFunc postDraw2D;
 
-emptyFunc postDraw;
-emptyFunc postWindowUpdate;
+inline emptyFunc postDraw;
+inline emptyFunc postWindowUpdate;

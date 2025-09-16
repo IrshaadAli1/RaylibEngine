@@ -5,6 +5,6 @@
 #include "setup.cpp"
 #include "gameFunctions.cpp"
 
-void init();
+inline void init();
 
 #endif // RAYLIBENGINELIB_LIBRARY_H

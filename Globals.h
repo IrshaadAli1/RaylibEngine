@@ -8,20 +8,20 @@
 
 inline namespace Globals {
     namespace Window {
-        Variable Width = Variable(0.0f);
-        Variable Height = Variable(0.0f);
-        Variable X = Variable(0.0f);
-        Variable Y = Variable(0.0f);
+        inline Variable Width = Variable(0.0f);
+        inline Variable Height = Variable(0.0f);
+        inline Variable X = Variable(0.0f);
+        inline Variable Y = Variable(0.0f);
 
-        Variable Title = Variable<std::string>("Raylib Engine");
-        Variable FPS = Variable(60);
-        Variable BG = Variable(BLACK);
+        inline Variable Title = Variable<std::string>("Raylib Engine");
+        inline Variable FPS = Variable(60);
+        inline Variable BG = Variable(BLACK);
 
-        float MonitorWidth = 0.0f;
-        float MonitorHeight = 0.0f;
+        inline float MonitorWidth = 0.0f;
+        inline float MonitorHeight = 0.0f;
 
-        RCamera3D Camera3D = RCamera3D();
-        RCamera2D Camera2D = RCamera2D();
+        inline RCamera3D Camera3D = RCamera3D();
+        inline RCamera2D Camera2D = RCamera2D();
     }
 }
 #endif //RAYLIBENGINE_GLOBALS_H

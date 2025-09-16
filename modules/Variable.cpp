@@ -136,7 +136,7 @@ public:
     }
 };
 
-void updateVars() {
+inline void updateVars() {
     for (Variable v : VarArray) {
         if (v.isChanged()) {
             v.lateOnChange(v.getOld(), v);

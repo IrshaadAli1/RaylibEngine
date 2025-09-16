@@ -1,6 +1,6 @@
 #include "library.h"
 
-void init() {
+inline void init() {
     preInit();
     setupRaylibs();
     setupVariables();

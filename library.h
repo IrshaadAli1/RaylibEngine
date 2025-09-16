@@ -1,7 +1,9 @@
+#pragma once
 #ifndef RAYLIBENGINELIB_LIBRARY_H
 #define RAYLIBENGINELIB_LIBRARY_H
-#include "modules/Variable.cpp"
-#include "modules/Utils.cpp"
+#include "Globals.h"
+#include "setup.cpp"
+#include "gameFunctions.cpp"
 
 void init();
 

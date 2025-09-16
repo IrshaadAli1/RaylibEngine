@@ -27,6 +27,7 @@ protected:
 
 public:
     bind onChange = defaultBind;
+    bind lateOnChange = defaultBind;
 
     // Constructors
     Variable(t value) {
@@ -59,6 +60,14 @@ public:
 
     void bindChange() {
         onChange = defaultBind;
+    }
+
+    void bindLateChange(bind newBind) {
+        lateOnChange = newBind;
+    }
+
+    void bindLateChange() {
+        lateOnChange = defaultBind;
     }
 
     bool isChanged() const {
@@ -125,11 +134,13 @@ public:
     void resetChanged() override {
         changed = false;
     }
-
-    // Static helper
-    static void resetChangedCheck() {
-        for (auto* v : VarArray) {
-            v->resetChanged();
-        }
-    }
 };
+
+void updateVars() {
+    for (Variable v : VarArray) {
+        if (v.isChanged()) {
+            v.lateOnChange(v.getOld(), v);
+        }
+        v.resetChanged();
+    }
+}

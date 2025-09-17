@@ -7,6 +7,7 @@ inline void init() {
     updateWindow();
     postInit();
 
+    preMainLoop();
     while (!WindowShouldClose()) {
         events();
         update();

@@ -4,6 +4,7 @@
 #pragma once
 #include <functional>
 #include <vector>
+#include "any"
 
 // Base class for common interface
 class VariableBase {
@@ -12,7 +13,7 @@ public:
 };
 
 // Global array of VariableBase*
-inline std::vector<VariableBase*> VarArray = std::vector<VariableBase*>();
+inline std::vector<std::any> VarArray = std::vector<std::any>();
 
 template <typename t>
 class Variable : public VariableBase {

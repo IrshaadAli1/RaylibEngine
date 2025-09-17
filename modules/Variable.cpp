@@ -13,7 +13,7 @@ public:
 };
 
 // Global array of VariableBase*
-inline std::vector<std::any> VarArray = std::vector<std::any>();
+inline std::vector<VariableBase*> VarArray;
 
 template <typename t>
 class Variable : public VariableBase {

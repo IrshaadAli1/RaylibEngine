@@ -38,7 +38,7 @@ inline void updateWindow() {
         SetWindowTitle(Window::Title.get().c_str());
     }
     if (Window::FPS.isChanged()) {
-        SetTargetFPS(Window::FPS);
+        SetTargetFPS(Window::FPS.get());
     }
     updateVars();
 }

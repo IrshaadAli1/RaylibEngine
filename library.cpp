@@ -1,12 +1,19 @@
 #include "library.h"
+#include <iostream>
 
 inline void init() {
+    using namespace std;
     preInit();
+    cout << "Raylib Engine INFO: Setting up Raylib" << endl;
+    cout << "Raylib Engine SETUP: Raylib" << endl;
     setupRaylibs();
-    setupVariables();
-    updateWindow();
-    postInit();
+    cout << "Raylib Engine INFO: Raylib Setup Complete" << endl;
 
+    cout << "Raylib Engine SETUP: Variables" << endl;
+    setupVariables();
+    cout << "Raylib Engine INFO: Variables Setup Complete" << endl;
+    postInit();
+    cout << "Raylib Engine INFO: Starting Main Loop.." << endl;
     preMainLoop();
     while (!WindowShouldClose()) {
         events();
@@ -37,4 +44,5 @@ inline void init() {
         updateWindow();
         postWindowUpdate();
     }
+    cout << "Raylib Engine INFO: Exiting Program.." << endl;
 }

@@ -1,45 +1,54 @@
-//
-// Created by Irshaad on 2025-09-08.
-//
 #pragma once
 #include <functional>
 #include <vector>
-#include "any"
 
 // Base class for common interface
 class VariableBase {
 public:
+    virtual ~VariableBase() = default;  // Virtual destructor for proper cleanup
+
+    // Pure virtual function to reset the changed state
     virtual void resetChanged() = 0;
+
+    // Pure virtual function to check if the variable has changed
+    virtual bool isChanged() const = 0;
+
+    // Pure virtual function to update the variable
+    virtual void update() = 0;
 };
 
-// Global array of VariableBase*
+// Global array of VariableBase* (to store pointers to derived classes)
 inline std::vector<VariableBase*> VarArray;
 
 template <typename t>
 class Variable : public VariableBase {
 protected:
-    using bind = std::function<void(t, Variable<t>)>;
+    using bind = std::function<void(t, Variable<t>&)>;
 
     t var;
     t old;
     bool changed = false;
 
-    static void defaultBind(t old, Variable self) {}
+    static void defaultBind(t old, Variable<t>& self) {}
 
 public:
     bind onChange = defaultBind;
     bind lateOnChange = defaultBind;
 
-    // Constructors
+    // Constructor
     Variable(t value) {
         var = value;
         onChange = defaultBind;
+
+        // Add the current object as a raw pointer to the global array
         VarArray.push_back(this);
     }
 
     Variable(t value, bind binding) {
         var = value;
         onChange = binding;
+
+        // Add the current object as a raw pointer to the global array
         VarArray.push_back(this);
     }
 
@@ -71,8 +80,19 @@ public:
         lateOnChange = defaultBind;
     }
 
-    bool isChanged() const {
+    bool isChanged() const override {
         return changed;
+    }
+
+    void resetChanged() override {
+        changed = false;
+    }
+
+    void update() override {
+        if (isChanged()) {
+            lateOnChange(old, *this);
+        }
+        resetChanged();
     }
 
     // Operator overloads
@@ -130,18 +150,11 @@ public:
 
     // Implicit conversion to t
     operator t() const { return var; }
-
-    // Reset changed flag
-    void resetChanged() override {
-        changed = false;
-    }
 };
 
+// Function to update all variables
 inline void updateVars() {
-    for (Variable v : VarArray) {
-        if (v.isChanged()) {
-            v.lateOnChange(v.getOld(), v);
-        }
-        v.resetChanged();
+    for (auto* v : VarArray) {  // Use pointer dereferencing here
+        v->update();  // Call update on each variable object
     }
 }

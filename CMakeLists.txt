@@ -14,6 +14,7 @@ if (NOT raylib_FOUND)
     FetchContent_MakeAvailable(raylib)
 endif()
 
+
 # raylib-cpp
 find_package(raylib_cpp QUIET)
 if (NOT raylib_cpp_FOUND)
@@ -29,6 +30,7 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-add_library(RaylibEngine STATIC RaylibEngine.cpp)
+add_library(RaylibEngine STATIC RaylibEngine.cpp
+)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 26)
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp)

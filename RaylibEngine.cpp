@@ -1,3 +1,4 @@
+#pragma once
 #include "RaylibEngine.h"
 #include <iostream>
 
